@@ -58,18 +58,19 @@ function Testimonials() {
 
         {/* Section Header */}
         <div className="text-center mb-14">
+          <span className="inline-block text-xs font-semibold tracking-[0.2em] text-[#ef4444]/80 uppercase mb-3">What Clients Say</span>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-[#ef4444]">
             Client Testimonials
           </h2>
         </div>
 
         {/* Testimonial Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t) => (
             <div
               key={t.id}
               id={t.id}
-              className="flex flex-col justify-between gap-8 p-0"
+              className="flex flex-col justify-between gap-6 p-6 rounded-2xl border border-gray-100 bg-[#f8fafc] hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
             >
               {/* Large decorative quote mark */}
               <div>
@@ -79,7 +80,7 @@ function Testimonials() {
                 >
                   "
                 </span>
-                <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                   {t.quote}
                 </p>
               </div>
@@ -88,7 +89,7 @@ function Testimonials() {
               <div className="flex items-center gap-3">
                 <AvatarPlaceholder />
                 <div className="flex flex-col">
-                  <span className="text-[#ef4444] font-semibold italic text-sm sm:text-base">
+                  <span className="text-gray-900 font-semibold italic text-sm sm:text-base">
                     {t.name}
                   </span>
                   <span className="text-gray-400 text-xs">{t.role}</span>

@@ -23,7 +23,7 @@ const logos = [
   { id: "logo-ittefaq", name: "Ittefaq Hospital Trust", src: slider3 },
   { id: "logo-pmdc", name: "Pakistan Medical Association", src: slider4 },
   { id: "logo-pims", name: "PIMS Hospital", src: slider5 },
-  { id: "logo-pims", name: "PIMS Hospital", src: slider6 },
+  { id: "logo-pims-2", name: "PIMS Hospital", src: slider6 },
 ];
 
 const stats = [
@@ -129,12 +129,17 @@ function Carousel() {
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Heading */}
         <div className='text-center mb-10'>
+          <span className='inline-block text-xs font-semibold tracking-[0.2em] text-[#ef4444]/80 uppercase mb-3'>Our Partners</span>
           <h2 className='text-4xl sm:text-5xl font-extrabold text-[#ef4444]'>Trusted By</h2>
           <p className='mt-3 text-gray-400 text-base sm:text-lg'>Proud partners of leading hospitals and healthcare institutions</p>
         </div>
 
         {/* Carousel wrapper — measured by ResizeObserver */}
-        <div ref={containerRef} className='relative overflow-hidden rounded-2xl'>
+        <div ref={containerRef} className='relative overflow-hidden rounded-2xl border border-gray-100 bg-[#f8fafc]'>
+          {/* Gradient masks */}
+          <div className='pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white via-white/70 to-transparent' />
+          <div className='pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white via-white/70 to-transparent' />
+
           {/* Sliding track */}
           <div className='flex transition-transform duration-700 ease-in-out' style={{ transform: `translateX(-${current * 100}%)` }}>
             {slides.map((slide, slideIdx) => (
@@ -148,22 +153,40 @@ function Carousel() {
                   <div
                     key={logo.id}
                     id={logo.id}
-                    className='flex-1 flex items-center justify-center p-4 rounded-xl cursor-pointer transition-colors duration-200 min-w-0'
+                    className='flex-1 flex items-center justify-center p-4 rounded-xl transition-colors duration-200 min-w-0'
                   >
                     <img
                       src={logo.src}
                       alt={logo.name}
-                      className='max-h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-75 hover:opacity-100'
+                      className='max-h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100'
                       loading='lazy'
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        e.currentTarget.nextSibling.style.display = "flex";
-                      }}
                     />
                   </div>
                 ))}
               </div>
             ))}
+          </div>
+
+          {/* Arrows */}
+          <div className='absolute inset-y-0 left-0 right-0 flex items-center justify-between px-1'>
+            <button
+              onClick={() => goTo((current - 1 + total) % total)}
+              aria-label='Previous'
+              className='inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-sm hover:shadow-md border border-gray-200 text-gray-600 hover:text-[#ef4444] transition-all'
+            >
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='w-4 h-4'>
+                <path d='m15 18-6-6 6-6' />
+              </svg>
+            </button>
+            <button
+              onClick={() => goTo((current + 1) % total)}
+              aria-label='Next'
+              className='inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-sm hover:shadow-md border border-gray-200 text-gray-600 hover:text-[#ef4444] transition-all'
+            >
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='w-4 h-4'>
+                <path d='m9 18 6-6-6-6' />
+              </svg>
+            </button>
           </div>
 
           {/* Dot Indicators */}

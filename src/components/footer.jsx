@@ -54,7 +54,9 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-white">
+    <footer id="contact" className="relative bg-white">
+      {/* Top accent */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fef2f2] to-transparent" aria-hidden="true" />
 
       {/* ── Main Contact + Map row ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
@@ -64,9 +66,20 @@ function Footer() {
           <div className="w-full lg:w-2/5 flex flex-col justify-start">
 
             {/* Section heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#ef4444] mb-10">
-              Contact Us
-            </h2>
+            <div className="mb-6">
+              <span className="inline-block text-xs font-semibold tracking-[0.2em] text-[#ef4444]/80 uppercase mb-2">Get In Touch</span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-[#ef4444]">Contact Us</h2>
+            </div>
+
+            {/* Quick actions */}
+            <div className="mb-8 grid grid-cols-2 gap-3">
+              <a href="tel:+923012718576" className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold shadow-md transition-all duration-200">
+                Call Now
+              </a>
+              <a href="https://wa.me/923012718576?text=Hello%20Sargodha%20Ambulance%20Service%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-semibold shadow-md transition-all duration-200">
+                WhatsApp
+              </a>
+            </div>
 
             {/* Contact items */}
             <div className="flex flex-col gap-8">
@@ -75,10 +88,10 @@ function Footer() {
 
                   {/* Icon + label row */}
                   <div className="flex items-center gap-3 mb-1">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#ef4444]/10 text-[#ef4444]">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#ef4444]/10 text-[#ef4444] border border-red-100">
                       {item.icon}
                     </div>
-                    <span className="text-[#ef4444] font-bold text-lg">
+                    <span className="text-gray-900 font-bold text-lg">
                       {item.label}
                     </span>
                   </div>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import logo from "../assets/logo.png";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
   { label: "About Us", href: "#about" },
-  { label: "Our Vehicles", href: "#vehicles" },
+  { label: "Our Vehicles", href: "#gallery" },
 ];
 
 export default function Navbar() {
@@ -39,7 +40,7 @@ export default function Navbar() {
         {/* Drawer header */}
         <div className='flex items-center justify-between mb-8'>
           <div className='flex items-center gap-3'>
-            <img src='src/assets/logo.png' alt='Logo' className='h-12' />
+            <img src={logo} alt='Logo' className='h-12' />
           </div>
           <button
             onClick={() => setMenuOpen(false)}
@@ -87,30 +88,29 @@ export default function Navbar() {
 
         <div className='h-px bg-gray-100 mb-6' />
 
-        <a
-          href='#contact'
-          onClick={() => setMenuOpen(false)}
-          className='flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow-lg transition-all duration-200'
-        >
-          Contact Us
-          <svg
-            width='14'
-            height='14'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            strokeWidth='2.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
+        <div className='grid grid-cols-2 gap-3'>
+          <a
+            href='tel:+923012718576'
+            onClick={() => setMenuOpen(false)}
+            className='flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow-lg transition-all duration-200'
           >
-            <path d='M5 12h14M12 5l7 7-7 7' />
-          </svg>
-        </a>
+            Call Now
+          </a>
+          <a
+            href='https://wa.me/923012718576?text=Hello%20Sargodha%20Ambulance%20Service%2C%20I%20need%20assistance.'
+            target='_blank'
+            rel='noopener noreferrer'
+            onClick={() => setMenuOpen(false)}
+            className='flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-sm shadow-lg transition-all duration-200'
+          >
+            WhatsApp
+          </a>
+        </div>
 
         <div className='mt-6 space-y-2'>
           <p className='text-[9px] text-gray-400 uppercase tracking-[2px] font-semibold'>Get In Touch</p>
-          <a href='tel:+1234567890' className='flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors'>
-            <span>📞</span> +1 (234) 567-890
+          <a href='tel:+923012718576' className='flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors'>
+            <span>📞</span> +92 301 2718576
           </a>
           <a href='mailto:info@sas.com' className='flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors'>
             <span>✉️</span> info@sas.com
@@ -120,15 +120,15 @@ export default function Navbar() {
 
       {/* ── Main Navbar ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-30 bg-white transition-all duration-300 ${
-          scrolled ? "shadow-md border-b border-gray-100 py-3" : "shadow-sm py-4"
+        className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${
+          scrolled ? "bg-white/90 supports-[backdrop-filter]:bg-white/70 backdrop-blur shadow-md border-b border-gray-100 py-3" : "bg-white shadow-sm py-4"
         }`}
       >
         <div className='max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between'>
           {/* Logo */}
           <a href='#home' className='flex items-center gap-3 group flex-shrink-0' aria-label='SAS Home'>
             <div className='flex flex-col leading-none'>
-                <img src='src/assets/logo.png' alt='Logo' className='h-12' />
+                <img src={logo} alt='Logo' className='h-12' />
             </div>
           </a>
 
@@ -164,26 +164,23 @@ export default function Navbar() {
 
           {/* CTA + Hamburger */}
           <div className='flex items-center gap-3'>
-            {/* Desktop CTA */}
-            <a
-              href='#contact'
-              className='hidden md:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold tracking-wide shadow-md shadow-red-200 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg group'
-            >
-              Contact Us
-              <svg
-                width='14'
-                height='14'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                className='transition-transform duration-200 group-hover:translate-x-1'
+            {/* Desktop CTAs */}
+            <div className='hidden md:flex items-center gap-2'>
+              <a
+                href='tel:+923012718576'
+                className='inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold tracking-wide shadow-md shadow-red-200 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg'
               >
-                <path d='M5 12h14M12 5l7 7-7 7' />
-              </svg>
-            </a>
+                Call Now
+              </a>
+              <a
+                href='https://wa.me/923012718576?text=Hello%20Sargodha%20Ambulance%20Service%2C%20I%20need%20assistance.'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg'
+              >
+                WhatsApp
+              </a>
+            </div>
 
             {/* Hamburger */}
             <button

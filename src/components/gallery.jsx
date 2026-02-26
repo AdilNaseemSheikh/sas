@@ -45,8 +45,20 @@ const vehicles = [
 ];
 
 /* ─── Lightbox ─────────────────────────────────────────────── */
-function Lightbox({ image, onClose }) {
+function Lightbox({ image, onClose, onPrev, onNext }) {
   if (!image) return null;
+
+  // Keyboard controls: Esc to close, arrows to navigate
+  React.useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft' && onPrev) onPrev();
+      if (e.key === 'ArrowRight' && onNext) onNext();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose, onPrev, onNext]);
+
   return (
     <div
       className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4'
@@ -62,6 +74,27 @@ function Lightbox({ image, onClose }) {
       >
         &times;
       </button>
+
+      {/* Arrows */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev && onPrev(); }}
+        aria-label='Previous image'
+        className='absolute left-6 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-[#ef4444] shadow-md'
+      >
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='w-5 h-5'>
+          <path d='m15 18-6-6 6-6' />
+        </svg>
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext && onNext(); }}
+        aria-label='Next image'
+        className='absolute right-6 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-[#ef4444] shadow-md'
+      >
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='w-5 h-5'>
+          <path d='m9 18 6-6-6-6' />
+        </svg>
+      </button>
+
       <img
         src={image.src}
         alt={image.alt}
@@ -76,11 +109,24 @@ function Lightbox({ image, onClose }) {
 function Gallery() {
   const [lightbox, setLightbox] = useState(null);
 
+  const idx = lightbox ? vehicles.findIndex((v) => v.id === lightbox.id) : -1;
+  const prev = () => {
+    if (idx < 0) return;
+    const nextIdx = (idx - 1 + vehicles.length) % vehicles.length;
+    setLightbox(vehicles[nextIdx]);
+  };
+  const next = () => {
+    if (idx < 0) return;
+    const nextIdx = (idx + 1) % vehicles.length;
+    setLightbox(vehicles[nextIdx]);
+  };
+
   return (
     <section id='gallery' className='bg-white py-16 sm:py-24'>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='text-center mb-10'>
+          <span className='inline-block text-xs font-semibold tracking-[0.2em] text-[#ef4444]/80 uppercase mb-3'>Fleet</span>
           <h2 className='text-4xl sm:text-5xl font-extrabold text-[#ef4444]'>Our Vehicles</h2>
           <p className='mt-3 text-gray-400 text-base sm:text-lg'>A fleet equipped and ready for every emergency</p>
         </div>
@@ -92,7 +138,7 @@ function Gallery() {
               key={vehicle.id}
               id={vehicle.id}
               onClick={() => setLightbox(vehicle)}
-              className='group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-4 focus:ring-red-300/50 cursor-zoom-in'
+              className='group relative rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-red-300/50 cursor-zoom-in'
               aria-label={`View ${vehicle.alt}`}
             >
               <img
@@ -102,8 +148,8 @@ function Gallery() {
                 className='w-full h-56 sm:h-60 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-500'
               />
               {/* Hover overlay */}
-              <div className='absolute inset-0 bg-[#ef4444]/0 group-hover:bg-[#ef4444]/20 transition-colors duration-300 flex items-center justify-center'>
-                <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3 shadow-lg'>
+              <div className='absolute inset-0 bg-[#ef4444]/0 group-hover:bg-[#ef4444]/15 transition-colors duration-300 flex items-center justify-center'>
+                <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/95 rounded-full p-3 shadow-lg'>
                   {/* Zoom icon */}
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -129,7 +175,7 @@ function Gallery() {
       </div>
 
       {/* Lightbox */}
-      <Lightbox image={lightbox} onClose={() => setLightbox(null)} />
+      <Lightbox image={lightbox} onClose={() => setLightbox(null)} onPrev={prev} onNext={next} />
     </section>
   );
 }

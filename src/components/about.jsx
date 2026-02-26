@@ -3,8 +3,10 @@ import about from "../assets/about.png";
 
 function About() {
   return (
-    <section id="about" className="bg-white py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative bg-white py-16 sm:py-24">
+      {/* Background accent */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#fef2f2] to-transparent" aria-hidden="true" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Two-column grid: image left, text right */}
         <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
@@ -12,18 +14,19 @@ function About() {
           {/* ── Left: Image ───────────────────────────────── */}
           <div className="w-full lg:w-1/2 flex-shrink-0">
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              {/* Replace this src with your own image when ready */}
               <img
                 src={about}
                 alt="Sargodha Ambulance Service team"
                 className="w-full h-72 sm:h-96 lg:h-[480px] object-cover"
                 loading="lazy"
               />
+              {/* Image gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent" aria-hidden="true" />
 
               {/* Decorative experience badge */}
-              <div className="absolute bottom-5 left-5 bg-[#ef4444] text-white rounded-xl px-5 py-3 shadow-lg">
+              <div className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-sm text-[#ef4444] rounded-xl px-5 py-3 shadow-lg border border-red-100">
                 <p className="text-3xl font-extrabold leading-none">10+</p>
-                <p className="text-sm font-medium mt-0.5 opacity-90">Years of Service</p>
+                <p className="text-sm font-semibold mt-0.5 tracking-wide">Years of Service</p>
               </div>
             </div>
           </div>
@@ -32,12 +35,12 @@ function About() {
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
 
             {/* Tag line */}
-            <span className="inline-block text-[#ef4444] font-semibold text-sm uppercase tracking-widest mb-3">
+            <span className="inline-block text-[#ef4444]/80 font-semibold text-xs uppercase tracking-[0.2em] mb-3">
               Who We Are
             </span>
 
             {/* Heading */}
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#ef4444] leading-tight mb-6">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#ef4444] leading-tight mb-4">
               About Our <br className="hidden sm:block" /> Company
             </h2>
 
@@ -57,21 +60,29 @@ function About() {
                 { value: "50+", label: "Hospitals Partnered" },
                 { value: "24/7", label: "Always Available" },
               ].map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center text-center p-4 rounded-xl bg-[#f1f5f9]">
-                  <span className="text-2xl font-extrabold text-[#ef4444]">{stat.value}</span>
+                <div key={stat.label} className="flex flex-col items-center text-center p-4 rounded-xl bg-[#f8fafc] border border-gray-100">
+                  <span className="text-2xl font-extrabold text-gray-900">{stat.value}</span>
                   <span className="text-xs text-gray-500 mt-1 leading-tight">{stat.label}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
-            <div>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
               <a
                 href="#contact"
                 id="about-contact-btn"
-                className="inline-block px-8 py-3 rounded-full bg-[#ef4444] hover:bg-[#dc2626] active:scale-95 text-white font-semibold text-base shadow-md shadow-red-200 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-300/50"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#ef4444] hover:bg-[#dc2626] active:scale-95 text-white font-semibold text-base shadow-md shadow-red-200 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-300/50"
               >
                 Contact Us
+              </a>
+              <a
+                href="https://wa.me/923012718576?text=Hello%20Sargodha%20Ambulance%20Service%2C%20I%20have%20a%20question."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-[#25D366] border border-green-300 hover:bg-green-50 font-semibold text-base shadow-sm transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-300/40"
+              >
+                WhatsApp
               </a>
             </div>
           </div>
