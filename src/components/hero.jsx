@@ -1,4 +1,5 @@
 import React from "react";
+import heroBg from "../assets/hero-bg.jpg";
 
 function Hero() {
   return (
@@ -10,7 +11,7 @@ function Hero() {
       {/* Background image placeholder — replace src when ready */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('src/assets/hero-bg.jpg')" }}
+        style={{ backgroundImage: `url(${heroBg})` }}
         aria-hidden="true"
       />
 
@@ -58,7 +59,7 @@ function Hero() {
       {/* Floating WhatsApp / Chat Button */}
       <div className="fixed bottom-6 left-6 z-50">
         <a
-          href="https://wa.me/"
+          href="https://wa.me/923012718576?text=Hello%20Sargodha%20Ambulance%20Service%2C%20I%20need%20assistance."
           id="hero-chat-btn"
           target="_blank"
           rel="noopener noreferrer"
