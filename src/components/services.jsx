@@ -1,5 +1,10 @@
 import React from "react";
 
+import services1 from "../assets/services-1.jpg";
+import services2 from "../assets/services-2.jpg";
+import services3 from "../assets/services-3.jpg";
+import services4 from "../assets/services-4.jpg";
+
 /* ─── Data ────────────────────────────────────────────────────── */
 
 const services = [
@@ -7,28 +12,28 @@ const services = [
     id: "emergency-medical-transport",
     title: "Emergency Medical Transport",
     description: "Immediate response and transport to the nearest hospital.",
-    image: "../assets/services-1.jpg",
+    image: services1,
     alt: "Paramedics loading a patient into an ambulance",
   },
   {
     id: "long-distance-ambulance",
     title: "Long-Distance Ambulance Service",
     description: "Ensuring patient comfort and continuity of care over long distances.",
-    image: "../assets/services-2.jpg",
+    image: services2,
     alt: "Ambulance on a highway",
   },
   {
     id: "ambulance-repatriation",
     title: "Ambulance Repatriation Services",
     description: "Handling all logistical details to bring loved ones home safely.",
-    image: "../assets/services-3.jpg",
+    image: services3,
     alt: "Medical equipment inside an ambulance",
   },
   {
     id: "pediatric-neonatal-transport",
     title: "Pediatric And Neonatal Transport",
     description: "Safe and gentle transport for infants and children requiring medical care.",
-    image: "../assets/services-4.jpg",
+    image: services4,
     alt: "Neonatal care transport",
   },
 ];

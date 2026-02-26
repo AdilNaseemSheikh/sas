@@ -1,4 +1,5 @@
 import React from "react";
+import about from "../assets/about.png";
 
 function About() {
   return (
@@ -13,7 +14,7 @@ function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               {/* Replace this src with your own image when ready */}
               <img
-                src="src/assets/about.png"
+                src={about}
                 alt="Sargodha Ambulance Service team"
                 className="w-full h-72 sm:h-96 lg:h-[480px] object-cover"
                 loading="lazy"

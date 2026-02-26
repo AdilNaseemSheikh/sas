@@ -1,4 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import slider1 from "../assets/img1.png";
+import slider2 from "../assets/img2.jpg";
+import slider3 from "../assets/img3.png";
+import slider4 from "../assets/img4.png";
+import slider5 from "../assets/img5.png";
+import slider6 from "../assets/img6.png";
 
 /* ─── All logos flat list ──────────────────────────────────────
    Replace src URLs with your actual partner logo images.
@@ -7,17 +13,17 @@ const logos = [
   {
     id: "logo-lgh",
     name: "Lahore General Hospital",
-    src: "src/assets/img1.png",
+    src: slider1,
   },
   {
     id: "logo-skmt",
     name: "Shaukat Khanum Memorial Trust",
-    src: "src/assets/img2.jpg",
+    src: slider2,
   },
-  { id: "logo-ittefaq", name: "Ittefaq Hospital Trust", src: "src/assets/img3.png" },
-  { id: "logo-pmdc", name: "Pakistan Medical Association", src: "src/assets/img4.png" },
-  { id: "logo-pims", name: "PIMS Hospital", src: "src/assets/img5.png" },
-  { id: "logo-pims", name: "PIMS Hospital", src: "src/assets/img6.png" },
+  { id: "logo-ittefaq", name: "Ittefaq Hospital Trust", src: slider3 },
+  { id: "logo-pmdc", name: "Pakistan Medical Association", src: slider4 },
+  { id: "logo-pims", name: "PIMS Hospital", src: slider5 },
+  { id: "logo-pims", name: "PIMS Hospital", src: slider6 },
 ];
 
 const stats = [
